@@ -11,67 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708211124) do
+ActiveRecord::Schema.define(version: 20150714001557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "fantasy_draft_orders", force: :cascade do |t|
-    t.integer  "fantasy_league_id"
+  create_table "fantasy_draft_picks", force: :cascade do |t|
     t.integer  "fantasy_draft_id"
     t.integer  "fantasy_team_id"
-    t.integer  "position"
+    t.integer  "player_id"
+    t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "fantasy_draft_orders", ["fantasy_draft_id"], name: "index_fantasy_draft_orders_on_fantasy_draft_id", using: :btree
-  add_index "fantasy_draft_orders", ["fantasy_league_id"], name: "index_fantasy_draft_orders_on_fantasy_league_id", using: :btree
-  add_index "fantasy_draft_orders", ["fantasy_team_id"], name: "index_fantasy_draft_orders_on_fantasy_team_id", using: :btree
+  add_index "fantasy_draft_picks", ["fantasy_draft_id"], name: "index_fantasy_draft_picks_on_fantasy_draft_id", using: :btree
+  add_index "fantasy_draft_picks", ["fantasy_team_id"], name: "index_fantasy_draft_picks_on_fantasy_team_id", using: :btree
+  add_index "fantasy_draft_picks", ["player_id"], name: "index_fantasy_draft_picks_on_player_id", using: :btree
 
   create_table "fantasy_draft_styles", force: :cascade do |t|
     t.string "name"
   end
 
   create_table "fantasy_drafts", force: :cascade do |t|
-    t.integer  "league_id"
-    t.integer  "fantasy_league_id"
     t.integer  "fantasy_draft_style_id"
+    t.integer  "user_id"
+    t.string   "name",                   null: false
     t.integer  "max"
     t.integer  "rounds"
     t.string   "password"
-    t.string   "subdomain"
+    t.string   "url"
     t.string   "season",                 null: false
+    t.datetime "starts_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "player_id"
   end
 
   add_index "fantasy_drafts", ["fantasy_draft_style_id"], name: "index_fantasy_drafts_on_fantasy_draft_style_id", using: :btree
-  add_index "fantasy_drafts", ["fantasy_league_id"], name: "index_fantasy_drafts_on_fantasy_league_id", using: :btree
-  add_index "fantasy_drafts", ["league_id"], name: "index_fantasy_drafts_on_league_id", using: :btree
-  add_index "fantasy_drafts", ["subdomain"], name: "index_fantasy_drafts_on_subdomain", using: :btree
-
-  create_table "fantasy_leagues", force: :cascade do |t|
-    t.integer  "league_id"
-    t.integer  "user_id"
-    t.string   "name",       null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "fantasy_leagues", ["league_id"], name: "index_fantasy_leagues_on_league_id", using: :btree
-  add_index "fantasy_leagues", ["user_id"], name: "index_fantasy_leagues_on_user_id", using: :btree
+  add_index "fantasy_drafts", ["player_id"], name: "index_fantasy_drafts_on_player_id", using: :btree
+  add_index "fantasy_drafts", ["url"], name: "index_fantasy_drafts_on_url", using: :btree
+  add_index "fantasy_drafts", ["user_id"], name: "index_fantasy_drafts_on_user_id", using: :btree
 
   create_table "fantasy_teams", force: :cascade do |t|
-    t.integer  "fantasy_league_id"
+    t.integer  "fantasy_draft_id"
     t.string   "name"
     t.string   "owner"
     t.boolean  "active"
+    t.integer  "draft_order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "fantasy_teams", ["fantasy_league_id"], name: "index_fantasy_teams_on_fantasy_league_id", using: :btree
+  add_index "fantasy_teams", ["fantasy_draft_id"], name: "index_fantasy_teams_on_fantasy_draft_id", using: :btree
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
@@ -124,15 +116,13 @@ ActiveRecord::Schema.define(version: 20150708211124) do
   add_index "users", ["password_digest"], name: "index_users_on_password_digest", using: :btree
   add_index "users", ["token"], name: "index_users_on_token", using: :btree
 
-  add_foreign_key "fantasy_draft_orders", "fantasy_drafts"
-  add_foreign_key "fantasy_draft_orders", "fantasy_leagues"
-  add_foreign_key "fantasy_draft_orders", "fantasy_teams"
+  add_foreign_key "fantasy_draft_picks", "fantasy_drafts"
+  add_foreign_key "fantasy_draft_picks", "fantasy_teams"
+  add_foreign_key "fantasy_draft_picks", "players"
   add_foreign_key "fantasy_drafts", "fantasy_draft_styles"
-  add_foreign_key "fantasy_drafts", "fantasy_leagues"
-  add_foreign_key "fantasy_drafts", "leagues"
-  add_foreign_key "fantasy_leagues", "leagues"
-  add_foreign_key "fantasy_leagues", "users"
-  add_foreign_key "fantasy_teams", "fantasy_leagues"
+  add_foreign_key "fantasy_drafts", "players"
+  add_foreign_key "fantasy_drafts", "users"
+  add_foreign_key "fantasy_teams", "fantasy_drafts"
   add_foreign_key "players", "leagues"
   add_foreign_key "players", "positions"
   add_foreign_key "players", "teams"

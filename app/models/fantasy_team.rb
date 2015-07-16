@@ -1,5 +1,5 @@
 class FantasyTeam < ActiveRecord::Base
-    belongs_to :fantasy_league
+    belongs_to :fantasy_draft
 
 
     def name_and_owner

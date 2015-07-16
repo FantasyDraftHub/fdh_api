@@ -12,9 +12,12 @@ Rails.application.routes.draw do
 
   resources :fantasy_draft_styles, only: [:index, :show]
 
-  resources :fantasy_leagues do
-    resources :fantasy_drafts
+  resources :fantasy_drafts do
     resources :fantasy_teams
+    resources :fantasy_draft_picks
   end
+
+  get 'fantasy_drafts/:id/panel', :to => 'fantasy_drafts#panel'
+  get 'fantasy_drafts/:url/:password', :to => 'fantasy_drafts#board'
 
 end

@@ -2,7 +2,7 @@ class PlayersController < ApplicationController
 
   def index
     players = Player.where(league_id: params['league_id'])
-    render json: players, status: 200
+    render json: players.to_json({:include => [:position]}), status: 200
   end
 
   def show
