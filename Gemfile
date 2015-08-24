@@ -9,6 +9,7 @@ gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'haikunator'
 gem 'pusher'
+gem 'httparty'
 
 group :development, :test do
   gem 'byebug'

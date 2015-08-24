@@ -6,15 +6,13 @@ set :repo_url, 'git@github.com:TradingCardScanner/fdh_api.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-set :branch, ENV.fetch('DEPLOY_BRANCH', 'master')
+set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/api'
 
 set :rails_env, 'production'
 set :assets_roles, []
-set :sidekiq_role, :sidekiq
-set :sidekiq_processes, 2
 
 namespace :deploy do
   task :setup_shared_dirs do
@@ -25,7 +23,6 @@ namespace :deploy do
       end
     end
   end
-  before :'deploy:setup_shared_dirs'
 
   task :current do
     on release_roles(:web) do
@@ -74,11 +71,4 @@ namespace :rails do
     exec "ssh -l #{fetch(:user, 'deploy')} -p #{port} -t #{server} 'cd #{fetch(:deploy_to)}/current && bin/rails c #{fetch(:rails_env)}'"
   end
 
-  namespace :seed do
-    task :all_dev do
-      on primary(:db) do
-        execute :rake, :'db:truncate', :'db:migrate'
-      end
-    end
-  end
 end
