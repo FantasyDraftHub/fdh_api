@@ -1,5 +1,5 @@
 class FantasyDraftsController < ApplicationController
-  before_action :authenticate, except: [ :show ]
+  before_action :authenticate, except: [ :show, :board, :panel]
 
   def index
     fantasy_drafts = current_user.fantasy_drafts.includes(:fantasy_teams).order('fantasy_teams.draft_order ASC').all
@@ -17,7 +17,7 @@ class FantasyDraftsController < ApplicationController
   end
 
   def board
-    fantasy_draft = current_user.fantasy_drafts.where(url: params[:url]).includes(:fantasy_teams).order('fantasy_teams.draft_order ASC').first
+    fantasy_draft = FantasyDraft.where(url: params[:url]).includes(:fantasy_teams).order('fantasy_teams.draft_order ASC').first
     render json: fantasy_draft.to_json({:include => [:fantasy_teams, :fantasy_draft_picks]}), status: 200
   end
 
