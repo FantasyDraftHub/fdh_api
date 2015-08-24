@@ -12,12 +12,14 @@ class FantasyTeamsController < ApplicationController
   end
 
   def create
-    fantasy_team = FantasyTeam.new(fantasy_team_params)
-    fantasy_team.fantasy_draft_id = params['fantasy_draft_id']
-    fantasy_team.draft_order = FantasyTeam.where(fantasy_draft_id: params['fantasy_draft_id']).count
-
+    fantasy_draft = FantasyDraft.find_by(id: params['fantasy_draft_id'])
+    fantasy_team = fantasy_draft.fantasy_teams.new(fantasy_team_params)
+    fantasy_team.draft_order = fantasy_draft.fantasy_teams.count
 
     if fantasy_team.save
+      if fantasy_team.draft_order == 0
+        fantasy_draft.update_attributes(fantasy_team_id: fantasy_team.id)
+      end
       render json: fantasy_team, status: 201
     else
       render json: fantasy_team.errors, status: 400

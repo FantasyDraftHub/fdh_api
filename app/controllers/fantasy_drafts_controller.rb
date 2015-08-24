@@ -7,7 +7,7 @@ class FantasyDraftsController < ApplicationController
   end
 
   def show
-    fantasy_draft = current_user.fantasy_drafts.where(id: params[:id]).first
+    fantasy_draft = current_user.fantasy_drafts.where(id: params[:id]).includes(:fantasy_teams).order('fantasy_teams.draft_order ASC').first
     render json: fantasy_draft.to_json({:include => :fantasy_teams}), status: 200
   end
 
@@ -17,7 +17,7 @@ class FantasyDraftsController < ApplicationController
   end
 
   def board
-    fantasy_draft = current_user.fantasy_drafts.where(url: params[:url], password: params[:password]).includes(:fantasy_teams).order('fantasy_teams.draft_order ASC').first
+    fantasy_draft = current_user.fantasy_drafts.where(url: params[:url]).includes(:fantasy_teams).order('fantasy_teams.draft_order ASC').first
     render json: fantasy_draft.to_json({:include => [:fantasy_teams, :fantasy_draft_picks]}), status: 200
   end
 
@@ -37,6 +37,9 @@ class FantasyDraftsController < ApplicationController
   def update
 
     if fantasy_draft_params[:draft_order]
+
+      # Set the fantasy_draft.fantasy_team_id for the whos up on the draft board
+      FantasyDraft.find_by(id: params['id']).update_attributes(fantasy_team_id: fantasy_draft_params[:draft_order].first)
 
       fantasy_draft_params[:draft_order].each_with_index do |value, index|
         FantasyTeam.where(:id => value).update_all(:draft_order => index)
@@ -65,7 +68,7 @@ class FantasyDraftsController < ApplicationController
 
     def generate_url
       loop do
-        url = Haikunator.haikunate(100)
+        url = Haikunator.haikunate(0)
         break url unless FantasyDraft.exists?(url: url)
       end
     end

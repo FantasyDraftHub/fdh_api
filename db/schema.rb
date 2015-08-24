@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714001557) do
+ActiveRecord::Schema.define(version: 20150823164840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,9 +46,11 @@ ActiveRecord::Schema.define(version: 20150714001557) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "player_id"
+    t.integer  "fantasy_team_id"
   end
 
   add_index "fantasy_drafts", ["fantasy_draft_style_id"], name: "index_fantasy_drafts_on_fantasy_draft_style_id", using: :btree
+  add_index "fantasy_drafts", ["fantasy_team_id"], name: "index_fantasy_drafts_on_fantasy_team_id", using: :btree
   add_index "fantasy_drafts", ["player_id"], name: "index_fantasy_drafts_on_player_id", using: :btree
   add_index "fantasy_drafts", ["url"], name: "index_fantasy_drafts_on_url", using: :btree
   add_index "fantasy_drafts", ["user_id"], name: "index_fantasy_drafts_on_user_id", using: :btree
@@ -120,6 +122,7 @@ ActiveRecord::Schema.define(version: 20150714001557) do
   add_foreign_key "fantasy_draft_picks", "fantasy_teams"
   add_foreign_key "fantasy_draft_picks", "players"
   add_foreign_key "fantasy_drafts", "fantasy_draft_styles"
+  add_foreign_key "fantasy_drafts", "fantasy_teams"
   add_foreign_key "fantasy_drafts", "players"
   add_foreign_key "fantasy_drafts", "users"
   add_foreign_key "fantasy_teams", "fantasy_drafts"

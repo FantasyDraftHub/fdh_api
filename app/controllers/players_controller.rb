@@ -1,8 +1,14 @@
 class PlayersController < ApplicationController
 
   def index
-    players = Player.where(league_id: params['league_id'])
-    render json: players.to_json({:include => [:position]}), status: 200
+
+    if params[:name_only]
+      players = Player.where(league_id: params['league_id']).select(:id, :first_name, :last_name).order(:last_name)
+      render json: players.to_json({:methods => :name}), status: 200
+    else
+      players = Player.includes(:position, :team).where(league_id: params['league_id']).order(:last_name)
+      render json: players.to_json({:include => [:position, :team], :methods => :name}), status: 200
+    end
   end
 
   def show
