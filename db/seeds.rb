@@ -197,7 +197,7 @@ Team.create([
         league_id: 1,
         city: 'San Diego',
         name: 'Chargers',
-        key: 'SD',
+        key: 'LAC',
     },
     {
         id: 28,
@@ -216,9 +216,9 @@ Team.create([
     {
         id: 30,
         league_id: 1,
-        city: 'St. Louis',
+        city: 'Los Angeles',
         name: 'Rams',
-        key: 'STL',
+        key: 'LAR',
     },
     {
         id: 31,
@@ -303,10 +303,20 @@ players.each do |player|
     #   weight: '182'
     #   dob: 0000-00-00
     #   college: Fordham
+    if player['position'] == 'JAC'
+        player['position'] = 'RB'
+    end
 
     position = Position.find_by_key(player['position'])
     team     = Team.find_by_key(player['team'])
 
+    if !team
+        puts player['team']
+    end
+
+    if !position
+        puts player['position']
+    end
     Player.create(
         league_id: 1,
         team_id: team.id,

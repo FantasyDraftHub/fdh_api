@@ -4,7 +4,7 @@ require 'json'
 class FantasyFootballNerd
 
   API_KEY = "dw5bawd9qdza"
-  BASE_URL = "http://fantasyfootballnerd.com/service"
+  BASE_URL = "https://fantasyfootballnerd.com/service"
   FORMAT   = "json"
   SERVICES = {
     teams: 'nfl-teams',
