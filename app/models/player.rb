@@ -34,8 +34,13 @@ class Player < ActiveRecord::Base
   belongs_to :league
   belongs_to :team
   belongs_to :position
+  has_one :fantasy_draft_pick
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def has_been_drafted
+    fantasy_draft_pick.present?
   end
 end
