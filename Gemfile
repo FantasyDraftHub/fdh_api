@@ -8,6 +8,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'active_model_serializers'
 gem 'rack-cors', require: 'rack/cors'
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'haikunator'
 gem 'pusher'
 gem 'httparty'
