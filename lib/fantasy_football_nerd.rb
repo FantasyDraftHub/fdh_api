@@ -12,7 +12,9 @@ class FantasyFootballNerd
     players: 'players',
     byes: 'byes',
     injuries: 'injuries',
+    tiers: 'tiers',
     auction: 'auction',
+    auction_enhanced: 'auction-enhanced',
     draft_rankings: 'draft-rankings',
     draft_projections: 'draft-projections',
     weekly_rankings: 'weekly-rankings',
@@ -48,10 +50,22 @@ class FantasyFootballNerd
     response['Players']
   end
 
+  def self.auction_enhanced
+    url = feed_url(:auction_enhanced)
+    response = get_resource(url)
+    response
+  end
+
   def self.auction
     url = feed_url(:auction)
     response = get_resource(url)
     response['AuctionValues']
+  end
+
+  def self.tiers
+    url = feed_url(:tiers)
+    response = get_resource(url)
+    response
   end
 
   def self.draft_rankings

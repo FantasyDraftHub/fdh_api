@@ -1,3 +1,6 @@
+User.delete_all
+User.create(email: 'brett@hammond.io', password: 'password')
+
 League.delete_all
 League.create([
     {
@@ -325,6 +328,7 @@ players.each do |player|
         last_name: player['lname'],
         active: player['active'],
         season: '2015-2016',
+        ffnerd_player_id: player['playerId'],
     )
 
 end
@@ -344,6 +348,8 @@ FantasyDraftStyle.create([
 ])
 puts "Fantasy Draft Styles have been seeded."
 
+FantasyRankings.new
+puts "Fantasy Player Rankings have been seeded."
 
 
 
