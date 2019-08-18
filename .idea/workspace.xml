@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65f6e8e7-0202-4b49-9d85-d1e4be3cac23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/controllers/rankings_controller.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/fantasy_rankings.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/players_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/players_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/fantasy_draft.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/fantasy_draft.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/fantasy_draft_pick.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/fantasy_draft_pick.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/fantasy_draft_style.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/fantasy_draft_style.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/fantasy_team.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/fantasy_team.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/league.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/league.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/player.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/player.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/position.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/position.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/team.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/team.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/fantasy_football_nerd.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fantasy_football_nerd.rb" afterDir="false" />
-    </list>
+    <list default="true" id="65f6e8e7-0202-4b49-9d85-d1e4be3cac23" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/log/" />
@@ -54,11 +36,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.elasticbeanstalk/config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -117,15 +108,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/position.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -154,6 +136,7 @@
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/controllers/rankings_controller.rb" />
+        <option value="$PROJECT_DIR$/.elasticbeanstalk/config.yml" />
       </list>
     </option>
   </component>
@@ -178,6 +161,11 @@
             <path>
               <item name="fdh_api" type="b2602c69:ProjectViewProjectNode" />
               <item name="fdh_api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fdh_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fdh_api" type="462c0819:PsiDirectoryNode" />
+              <item name=".elasticbeanstalk" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fdh_api" type="b2602c69:ProjectViewProjectNode" />
@@ -350,12 +338,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1566088688481</updated>
-      <workItem from="1566088689695" duration="11517000" />
+      <workItem from="1566088689695" duration="11813000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11517000" />
+    <option name="totallyTimeSpent" value="11813000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="161" width="1892" height="1212" extended-state="0" />
@@ -550,6 +538,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.elasticbeanstalk/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
       </provider>
     </entry>
