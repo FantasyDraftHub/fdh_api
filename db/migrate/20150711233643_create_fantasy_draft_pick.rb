@@ -1,4 +1,4 @@
-class CreateFantasyDraftPick < ActiveRecord::Migration
+class CreateFantasyDraftPick < ActiveRecord::Migration[5.2]
   def change
     create_table :fantasy_draft_picks do |t|
       t.references :fantasy_draft, index: true, foreign_key: true
